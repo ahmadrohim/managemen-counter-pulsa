@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PembeliController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [LoginController::class, 'index'] );
+Route::post('/login', [LoginController::class, 'login']);
 
-Route::get('/', function(){
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'register']);
+
+Route::post('/logOut', [LoginController::class, 'logOut']);
+
+Route::get('/dashboard', function(){
     return view('dashboard', [
         'tajuk_konten' => 'Dashboard',
         'active' => 'dashboard'
     ]);
 });
 
-Route::resource('/pembeli', PembeliController::class);
+Route::resource('/pembeli', PembeliController::class)->except('create');

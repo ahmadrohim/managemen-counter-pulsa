@@ -12,4 +12,18 @@ class Pembeli extends Model
     protected $guarded = ['id'];
 
 
+    public function scopeFilter($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function($query, $search){
+            return $query->where('nama', 'like', '%' . $search . '%')
+                         ->orWhere('no_telepon', 'like', '%' . $search . '%');
+        });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'kode_pembeli';
+    }
+
+
 }

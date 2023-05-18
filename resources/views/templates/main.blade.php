@@ -68,13 +68,15 @@
         {{ $tajuk_konten }}
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">{{ $tajuk_konten }}</li>
       </ol>
     </section>
   
     <!-- Main content -->
     <section class="content">
+
+     
      
       @yield('content')
   
